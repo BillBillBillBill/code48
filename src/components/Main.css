@@ -1,0 +1,115 @@
+body {
+  font: 10px;
+}
+.mr1 {
+  margin-right: 0.1rem;
+}
+.comment {
+  background: #fff;
+  padding: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.comment .comment-img {
+  width: 100%;
+  height: 4rem;
+  margin: 0.2rem 0;
+}
+.comment .comment-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.comment .avatar{
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.1rem;
+}
+.comment .time {
+  text-align: right;
+  font-size: 0.3rem;
+  color: #bbb;
+  vertical-align: middle;
+}
+.comment .time {
+  vertical-align: middle;
+}
+.comment .title {
+  font-size: 0.4rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.2rem;
+}
+.comment .content {
+  color:#555;
+  font-size: 0.3rem;
+  font-weight: normal;
+  margin-bottom: 0.2rem;
+}
+.comment .location {
+  color:#555;
+  font-size: 0.25rem;
+  font-weight: normal;
+  text-align: right;
+}
+
+.comment .replys {
+  background: #f2f2f2;
+  margin-top: 0.1rem;
+}
+
+.comment .reply {
+  font-size: 0.3rem;
+  padding: 0.05rem;
+}
+.comment .reply .user{
+  display: inline-block;
+}
+.comment .reply .avatar{
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 0.15rem;
+  object-fit: cover;
+}
+.comment .reply .message{
+  display: inline-block;
+}
+.comment .foot-button {
+  font-size: 0.3rem;
+  text-align: right;
+  margin-top: 0.1rem;
+}
+.comment .foot-button .icon {
+  margin-right: 0.1rem;
+}
+.comment .foot-button .vote {
+  display: inline-block;
+  margin-right: 0.1rem;
+}
+
+.comment .foot-button .messages {
+  display: inline-block;
+}
+.tag.red {
+  background-color: #e4e2fa;
+  color: #7265e6;
+}
+
+.font.green {
+  color: green;
+}
+
+.font.gray {
+  color: gray;
+}
+.font.blue {
+  color: blue;
+}
+.float-right {
+  position: absolute;
+  right: 40px;
+}

@@ -43,7 +43,10 @@ module.exports = {
       ]},
       // { test: /\.css$/, loader: 'style!css' }, // 把css处理成内联style，动态插入到页面
       { test: /\.less$/i, loader: ExtractTextPlugin.extract('style', 'css!postcss!less') },
-      { test: /\.css$/i, loader: ExtractTextPlugin.extract('style', 'css!postcss') }
+      { test: /\.css$/i, loader: ExtractTextPlugin.extract('style', 'css!postcss') },
+      
+      //处理字体
+      { test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=50000&name=[path][name].[ext]'}
     ]
   },
   postcss: [

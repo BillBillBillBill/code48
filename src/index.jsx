@@ -9,6 +9,7 @@ import User from './components/User';
 import Login from './components/Login';
 import { TabBar, Icon } from 'antd-mobile';
 
+import 'font-awesome/css/font-awesome.min.css'
 
 class Base extends React.Component {
 
