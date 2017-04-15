@@ -4,22 +4,46 @@ body {
 .mr1 {
   margin-right: 0.1rem;
 }
+.comment-list {
+  margin-bottom: 100px;
+}
 .comment {
   background: #fff;
   padding: 0.2rem;
   margin-bottom: 0.2rem;
 }
 .comment .comment-img {
+  display: flex;
+  justify-content: space-around;
   width: 100%;
-  height: 4rem;
   margin: 0.2rem 0;
-}
-.comment .comment-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  background: #fafafa;
 }
 
+.comment .comment-img img {
+  flex: 1 1 100%;
+  height: 4rem;
+  object-fit: cover;
+}
+.comment .comment-img.two img {
+  max-width: 45%;
+  min-width: 45%;
+  height: 2.5rem
+}
+.comment .comment-img.three img {
+  max-width: 30%;
+  min-width: 30%;
+  height: 2rem
+}
+.comment .comment-img.four {
+  flex-wrap: wrap;
+}
+.comment .comment-img.four img {
+  padding: 0.1rem;
+  max-width: 45%;
+  min-width: 45%;
+  height: 2rem
+}
 .comment .avatar{
   width: 0.5rem;
   height: 0.5rem;
