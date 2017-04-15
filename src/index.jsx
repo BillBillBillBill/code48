@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 
-import App from './components/App';
+import Main from './components/Main';
+import Map from './components/Map';
+import Create from './components/Create';
 import User from './components/User';
 import { TabBar, Icon } from 'antd-mobile';
 
@@ -46,6 +48,7 @@ class Base extends React.Component {
             this.setState({
               selectedTab: 'blueTab',
             });
+            hashHistory.push("/main");
           }}
           data-seed="logId"
         >
@@ -62,6 +65,7 @@ class Base extends React.Component {
             this.setState({
               selectedTab: 'redTab',
             });
+            hashHistory.push("/map");
           }}
           data-seed="logId1"
         >
@@ -90,6 +94,7 @@ class Base extends React.Component {
             this.setState({
               selectedTab: 'greenTab',
             });
+            hashHistory.push("/create");
           }}
         >
           {this.props.children}
@@ -117,8 +122,10 @@ class Base extends React.Component {
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={Base}>
-      <IndexRoute component={App}/>
-      <Route path="app" component={App}></Route>
+      <IndexRoute component={Main}/>
+      <Route path="main" component={Main}></Route>
+      <Route path="map" component={Map}></Route>
+      <Route path="create" component={Create}></Route>
       <Route path="user" component={User}></Route>
     </Route>
   </Router>
