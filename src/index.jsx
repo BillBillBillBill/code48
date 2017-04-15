@@ -6,6 +6,7 @@ import Main from './components/Main';
 import Map from './components/Map';
 import Create from './components/Create';
 import User from './components/User';
+import Login from './components/Login';
 import { TabBar, Icon } from 'antd-mobile';
 
 
@@ -14,7 +15,7 @@ class Base extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'redTab',
+      selectedTab: 'mainTab',
       hidden: false,
     };
   }
@@ -42,11 +43,11 @@ class Base extends React.Component {
             background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  0.42rem 0.42rem no-repeat' }}
           />
           }
-          selected={this.state.selectedTab === 'blueTab'}
+          selected={this.state.selectedTab === 'mainTab'}
           badge={1}
           onPress={() => {
             this.setState({
-              selectedTab: 'blueTab',
+              selectedTab: 'mainTab',
             });
             hashHistory.push("/main");
           }}
@@ -60,10 +61,10 @@ class Base extends React.Component {
           title="地图"
           key="地图"
           badge={'new'}
-          selected={this.state.selectedTab === 'redTab'}
+          selected={this.state.selectedTab === 'mapTab'}
           onPress={() => {
             this.setState({
-              selectedTab: 'redTab',
+              selectedTab: 'mapTab',
             });
             hashHistory.push("/map");
           }}
@@ -89,10 +90,10 @@ class Base extends React.Component {
           title="发布"
           key="发布"
           dot
-          selected={this.state.selectedTab === 'greenTab'}
+          selected={this.state.selectedTab === 'createTab'}
           onPress={() => {
             this.setState({
-              selectedTab: 'greenTab',
+              selectedTab: 'createTab',
             });
             hashHistory.push("/create");
           }}
@@ -104,10 +105,10 @@ class Base extends React.Component {
           selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
           title="我的"
           key="我的"
-          selected={this.state.selectedTab === 'yellowTab'}
+          selected={this.state.selectedTab === 'userTab'}
           onPress={() => {
             this.setState({
-              selectedTab: 'yellowTab',
+              selectedTab: 'userTab',
             });
             hashHistory.push("/user");
           }}
@@ -115,7 +116,7 @@ class Base extends React.Component {
           {this.props.children}
         </TabBar.Item>
       </TabBar>
-    );
+    );Create, Create
   }
 }
 
@@ -127,6 +128,7 @@ ReactDOM.render((
       <Route path="map" component={Map}></Route>
       <Route path="create" component={Create}></Route>
       <Route path="user" component={User}></Route>
+      <Route path="login" component={Login}></Route>
     </Route>
   </Router>
 ), document.getElementById('example'));
