@@ -1,2 +1,4 @@
-# code48
-code 48 for guangzhou
+# antd-mobile Web Q & A demo
+
+> some questions and answers
+
