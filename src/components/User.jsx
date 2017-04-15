@@ -21,7 +21,7 @@ export default class User extends React.Component{
         <NavBar mode="light" onLeftClick={() => history.push("/")}>用户界面</NavBar>
         <div style={{ width: '60%', float: "left" }}>
           <p>用户名</p>
-          <p>地址位置</p>
+          <p><i className="fa fa-map-marker mr1 font gray"></i>地址位置</p>
         </div>
         <div style={{ width: '40%', float: "right" }}>
           <img style={{ float: "right", width: '5em', height: '5em' }} src="https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg"></img>
@@ -31,6 +31,7 @@ export default class User extends React.Component{
         <div className="am-tabs-bar">
           <div className="am-tabs-tab">被赞数 50</div>
           <div className="am-tabs-tab">我的点赞 50</div>
+          <div className="am-tabs-tab">我的评论 50</div>
         </div>
         </div>
         <WhiteSpace size="l" />

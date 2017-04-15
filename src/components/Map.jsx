@@ -9,9 +9,13 @@ export default class Map extends React.Component{
   componentDidMount() {
     console.log('component loaded, map id: ' + this.state.id);
     let map = new BMap.Map(this.state.id);
-    var bs = map.getBounds();   //获取可视区域
-    var bssw = bs.getSouthWest();   //可视区域左下角
-    var bsne = bs.getNorthEast();   //可视区域右上角
+    navigator.geolocation.getCurrentPosition(
+      function(x) {
+        var point = new BMap.Point(x.coords.longitude, x.coords.latitude);  // 创建点坐标  
+        map.centerAndZoom(point, 15); 
+      }
+    );
+   
   }
   render() {
     const history=hashHistory;

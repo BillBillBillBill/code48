@@ -117,7 +117,7 @@ class Base extends React.Component {
           {this.props.children}
         </TabBar.Item>
       </TabBar>
-    );Create, Create
+    );
   }
 }
 
