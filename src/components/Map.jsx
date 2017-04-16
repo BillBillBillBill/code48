@@ -368,6 +368,7 @@ var data = [
             <Switch
               checked={type}
               onChange={(checked) => this.switchType(checked)}
+               platform="ios"
             />
           </div>
         </NavBar>
