@@ -173,12 +173,13 @@ export class CreateInner extends React.Component{
 		},{enableHighAccuracy: true});
 	}
   componentDidMount() {
+    let self = this;
     console.log('component loaded');
     this.getCurrentPosition();
     setInterval(function() {
       let values = this.props.form.getFieldsValue();
       let lastValues = this.state;
-      this.setState(
+      self.setState(
         {
           lastTitle: values.title,
           lastDescript: values.descript
@@ -222,7 +223,7 @@ export class CreateInner extends React.Component{
           />
         </List>
         <p><i className="fa fa-map-marker mr1 font gray"></i>{posDesc}</p>
-        <WingBlank size="md"><span>分类：<Tag>{ topics[0] }</Tag></span></WingBlank>
+        <WingBlank size="md"><span>分类：<Tag className="tag class">{ topics[0] }</Tag></span></WingBlank>
 
         <div style={{ textAlign: "center", margin: "2em 0" }}>
               {/*<Radio className="my-radio" checked={ type === 'good' } onChange={e => this.onChangeType('good')}>闪光</Radio>
@@ -241,7 +242,7 @@ export class CreateInner extends React.Component{
 
 
         <WhiteSpace size="l" />
-        <Button className="btn" type="primary" onClick={() => this.submit()}>发布</Button>
+        <Button style={{ marginBottom: '3em' }} className="btn" type="primary" onClick={() => this.submit()}>发布</Button>
       </div>
     );
   }

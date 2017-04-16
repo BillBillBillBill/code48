@@ -17,7 +17,7 @@ class LoginInner extends React.Component{
     const history=hashHistory;
     return (
       <div style={{minHeight:480}}>
-        <h1 style={{ margin: '0 auto', height: 350 }}>Logo</h1>
+        <h1 style={{ margin: '0 auto', height: 300 }}>Logo</h1>
         <List>
           <InputItem
             {...getFieldProps('phone')}
