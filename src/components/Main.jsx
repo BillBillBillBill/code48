@@ -77,7 +77,7 @@ export default class Main extends React.Component{
     const {commentList} = this.state;
     return (
       <div style={{minHeight:480}}>
-        <NavBar mode="light" iconName={false}>我的社区
+        <NavBar mode="light" iconName={false}> 动态
           <div className="float-right">
             <Switch checked={this.state.type} onChange={this.changeType.bind(this)}/>
           </div>
