@@ -226,9 +226,6 @@ export class CreateInner extends React.Component{
         <WingBlank size="md"><span>分类：<Tag className="tag class">{ topics[0] }</Tag></span></WingBlank>
 
         <div style={{ textAlign: "center", margin: "2em 0" }}>
-              {/*<Radio className="my-radio" checked={ type === 'good' } onChange={e => this.onChangeType('good')}>闪光</Radio>
-              <Radio style={{ marginLeft: "4em" }} className="my-radio" checked={type === 'bad'} onChange={e => this.onChangeType('bad')}>吐槽</Radio>*/}
-
             <span style={{ paddingRight: '1em' }}>吐槽</span>
             <Switch
               {...getFieldProps('type', {

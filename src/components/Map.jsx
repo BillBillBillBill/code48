@@ -1,15 +1,22 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
-import { Button, NavBar, WhiteSpace } from 'antd-mobile';
+import { Button, NavBar, WhiteSpace, Switch } from 'antd-mobile';
+import { createForm } from 'rc-form';
 
-export default class Map extends React.Component{
+
+class MapInner extends React.Component{
   state = {
+    type: false,
     id: `itminus_bmap${parseInt(Math.random()*10000000)}`
   }
   componentDidMount() {
     console.log('component loaded, map id: ' + this.state.id);
     let mp = new BMap.Map(this.state.id, {enableMapClick:false});
-
+    this.setState(
+      {
+        mp
+      }
+    );
 var data = [
     {
       "publish_time": 1492215632,
@@ -338,14 +345,38 @@ var data = [
     );
    
   }
+  switchType(type) {
+    this.setState(
+      {
+        type
+      }
+    );
+    if (type) {
+      this.state.mp.setMapStyle({style: 'dark'});
+    } else {
+      this.state.mp.setMapStyle({style: 'normal'});
+    }
+  }
   render() {
     const history=hashHistory;
-    const {id} = this.state;
+    const { id, type } = this.state;
+    const { getFieldProps } = this.props.form;
     return (
       <div style={{minHeight:480}}>
-        <NavBar mode="light" iconName={false}>地图界面</NavBar>
+        <NavBar mode="light" iconName={false}>地图
+          <div className="float-right">
+            <Switch
+              checked={type}
+              onChange={(checked) => this.switchType(checked)}
+            />
+          </div>
+        </NavBar>
         <div id={id}  style={{ width: "100%", height: "36em" }}></div>
       </div>
     );
   }
 }
+
+
+const Map = createForm()(MapInner);
+export default Map;

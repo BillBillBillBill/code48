@@ -3,6 +3,7 @@ import { hashHistory } from 'react-router';
 import { Button, NavBar, WhiteSpace } from 'antd-mobile';
 import { List, InputItem, Toast } from 'antd-mobile'
 import { createForm } from 'rc-form';
+import './Login.css';
 
 
 class LoginInner extends React.Component{
@@ -11,13 +12,15 @@ class LoginInner extends React.Component{
   }
   login = () => {
     console.log(this.props.form.getFieldsValue());
+    Toast.success('登陆成功', 1);
+    hashHistory.push('/user');
   }
   render() {
     const { getFieldProps } = this.props.form;
-    const history=hashHistory;
+    const history = hashHistory;
     return (
-      <div style={{minHeight:480}}>
-        <h1 style={{ margin: '0 auto', height: 300 }}>Logo</h1>
+      <div className="fuck" style={{minHeight:617}}>
+        <h1 style={{ margin: '0 auto', height: 300 }}></h1>
         <List>
           <InputItem
             {...getFieldProps('phone')}
