@@ -7,6 +7,7 @@ import Map from './components/Map';
 import Create from './components/Create';
 import User from './components/User';
 import Login from './components/Login';
+import Detail from './components/Detail';
 import { TabBar, Icon } from 'antd-mobile';
 
 import 'font-awesome/css/font-awesome.min.css'
@@ -138,6 +139,7 @@ ReactDOM.render((
       <Route path="create" component={Create}></Route>
       <Route path="user" component={User}></Route>
       <Route path="login" component={Login}></Route>
+      <Route path="detail/:id" component={Detail}></Route>
     </Route>
   </Router>
 ), document.getElementById('example'));

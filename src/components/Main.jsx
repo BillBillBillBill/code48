@@ -4,6 +4,10 @@ import { Button, NavBar, WhiteSpace, Flex, WingBlank, Icon, Tag, Switch } from '
 import './Main.css';
 
 const HOST = 'http://139.199.229.97:8000';
+
+const PositiveUrl = `${HOST}/api/problems/?sortby=create_time&polarity=positive`;
+const NegativeUrl = `${HOST}/api/problems/?sortby=create_time&polarity=negative`;
+
 const ProblemsUrl = `${HOST}/api/problems/?sortby=create_time&polarity=positive`;
 const VoteUrl = function(id) {
   return `${HOST}/api/problems/${id}/votes/`;
@@ -34,38 +38,54 @@ function toDateFomat(timestamp) {
 export default class Main extends React.Component{
   constructor(props, context) {
     super(props, context);
-    this.initState();
+    this.state = {
+      type: false
+    }
+    this.initState(PositiveUrl);
   }
-  initState() {
-    fetch(ProblemsUrl).then(res => {
-      res.json().then(data => {
-        this.state = {
-          commentList: data.data
-        };
-        this.updateCommentList(data.data);
-        console.log(this.state);
-      });
-    })
-    .catch(err => {
+  initState(url) {
+    Request(url, 'Get').then(data => {
+      /*
+      this.state = {
+        commentList: data.data
+      };
+      */
+      this.setState({
+        commentList: data.data
+      })
+      this.updateCommentList(data.data);
+      console.log(this.state);
+    }).catch(err => {
       console.log(err);
     });
+  }
+  changeType(flag) {
+    this.setState({
+      type: flag
+    });
+    if (flag) {
+      this.initState(NegativeUrl);
+    } else {
+      this.initState(PositiveUrl);
+    }
   }
   updateCommentList(list) {
     this.refs.CommentList.update(list);
   }
   render() {
     const history=hashHistory;
+    const {commentList} = this.state;
     return (
       <div style={{minHeight:480}}>
         <NavBar mode="light" iconName={false}>我的社区
           <div className="float-right">
-            <Switch defaultChecked={true} />
+            <Switch checked={this.state.type} onChange={this.changeType.bind(this)}/>
           </div>
         </NavBar>
         
         <WhiteSpace size="lg"/>
         <WingBlank>
-          <CommentList ref='CommentList' commentlist={this.commentList} ></CommentList>
+          <CommentList ref='CommentList' commentlist={commentList} ></CommentList>
         </WingBlank>        
 
       </div>
@@ -74,7 +94,7 @@ export default class Main extends React.Component{
 }
 
 
-class CommentList extends React.Component {
+export class CommentList extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -88,8 +108,9 @@ class CommentList extends React.Component {
   }
   render() {
     const comments = [];
-    for (var i = 0; i < this.state.list.length; i++) {
-      comments.push(<Comment commentDetail={this.state.list[i]}></Comment>);
+    const {list} = this.state;
+    for (var i = 0; i < list.length; i++) {
+      comments.push(<Comment commentDetail={list[i]}></Comment>);
     }
     return (
       <div className="comment-list">
@@ -100,7 +121,7 @@ class CommentList extends React.Component {
 }
 
 
-class CommentImg extends React.Component {
+export class CommentImg extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -138,7 +159,39 @@ class CommentImg extends React.Component {
   }
 }
 
-class Comment extends React.Component {
+export class Replys extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      replys: this.props.replys || []
+    }
+  }
+  update(replys) {
+    this.setState({
+      replys: replys
+    });
+  }
+  render() {
+    const replys = this.state.replys.map(item => {
+      return (
+        <div className="reply">
+          <div className="user">
+            <img src={item.author.headimgurl} alt="" className="avatar"/>
+            {item.author.nickname}:&nbsp;
+          </div>
+          <div className="message">{item.content}</div>
+        </div>
+      );
+    });
+    return (
+      <div className="replys">
+        {replys}
+      </div>
+    );
+  }
+}
+
+export class Comment extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -175,20 +228,13 @@ class Comment extends React.Component {
     }
     
   }
+  routeToDetail(id) {
+    const url = `detail/${id}`
+    hashHistory.push(url);
+  }
   render() {
     const {author, comments_preview, has_voted, id, content, comment_count, location, pictures, publish_time, title, topics, vote_count} = this.state.detail;
     const time = toDateFomat((publish_time+8 * 3600) * 1000);
-    const replys = comments_preview.map(item => {
-      return (
-        <div className="reply">
-          <div className="user">
-            <img src={item.author.headimgurl} alt="" className="avatar"/>
-            {item.author.nickname}:&nbsp;
-          </div>
-          <div className="message">{item.content}</div>
-        </div>
-      );
-    });
     const tags = topics.map(item => {
       return (
         <Tag className="tag red float-right mr1">{item}</Tag>
@@ -210,11 +256,9 @@ class Comment extends React.Component {
         </Flex>
         <CommentImg pictures={pictures}></CommentImg>
         <div className="title">{title} {tags}</div>
-        <div className="content">{content}</div>
+        <div className="content" onTouchStart={this.routeToDetail.bind(this, id)}>{content}</div>
         <div className="location"><i className="fa fa-location-arrow mr1 font gray"></i>{location.address}</div>
-        <div className="replys">
-          {replys}
-        </div>
+        <Replys replys={comments_preview}></Replys>
         <div className="foot-button">
           <div className="vote" onTouchEnd={this.vote.bind(this)}>
             <i className={"fa fa-thumbs-up icon font " + (has_voted ? "green" : "gray")}></i>{vote_count}
@@ -228,3 +272,5 @@ class Comment extends React.Component {
     );
   }
 }
+
+
